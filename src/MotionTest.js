@@ -3,41 +3,42 @@ import { connect } from 'react-redux'
 import { TransitionMotion, spring } from 'react-motion'
 
 
-class MotionTest extends Component {
-	render () {	
-		const { arr } = this.props
-		const willEnter = {
-			width: spring(100), height: spring(100)
-		}
-		const styles = Object.keys(arr).map(
-			key => ({
-				key: key,
-				style: {width: 50, height: 50, backgroundColor: 'blue'}
-			})
-		)
+const MotionTest = ({ messages }) => {
+		const stylesla = [
+          { key: 'one', style: { borderWidth: spring(10) }, data: 'one'},
+          { key: 'two', style: { borderWidth: spring(5) }, data: 'two'},
+          { key: 'three', style: { borderWidth: spring(15) }, data: 'three'}
+        ]
+		const styles = Object.keys(messages).map( id => ({
+			key: id, style: {borderWidth: spring(50)},data: id
+		}))
+		const defaults = Object.keys(messages).map( id => ({
+			key: id, style: {borderWidth: 0},data: id
+		}))
 
-		return <TransitionMotion
-//			willEnter={willEnter}
-			styles={styles}>
-		{ interpolatedStyles =>
-		// first render: a, b, c. Second: still a, b, c! Only last one's a, b.
-			<div>
-			{interpolatedStyles.map(config => <div
-					key={config.key}
-					style={{
-						...config.style,
-						border: '1px solid'
-					}} >
-					{arr[config.key]} </div>
-			)}
-			</div>
-		}
-		</TransitionMotion>
-	}
+		const willEnter = () => ({borderWidth: 0})
+		return<TransitionMotion
+      willEnter={willEnter}
+	  defaultStyles={defaults}
+      styles={styles}
+      >
+      {styles =>
+        <div>
+          { styles.map(({ key, style, data}) => (
+            <div key={key} style={{
+              borderColor: 'black',
+              borderStyle: 'solid',
+              ...style
+            }}>{ data }</div>
+          ))}
+        </div>
+      }
+    </TransitionMotion>
 }
-		
+
+
 export default connect(
 	state => ({
-		arr: state.messages
+		messages: state.messages
 	})
 )(MotionTest)

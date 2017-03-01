@@ -19,7 +19,14 @@ const initMessages = {
 export const messages = ( state = initMessages, action ) => {
     switch ( action.type ) {
         case 'NEW_MESSAGE':
-            return state
+            return {
+				...state,
+				[action.id]: {
+					id: action.id,
+					user: action.user,
+					message: action.message
+				}
+			}
         default:
             return state
     }
