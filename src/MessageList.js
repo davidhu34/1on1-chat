@@ -13,31 +13,42 @@ const MessageList = ({ messages }) => {
 	</ul>*/console.log('wtf')
 	const styles = Object.keys(messages).map( id => ({
 		key: id,
-		style: {borderWidth: spring(50)},
+		style: {
+			borderWidth: spring(5),
+			opacity: spring(1)
+		},
 		data: messages[id]
 	}))
 	const defaults = Object.keys(messages).map( id => ({
 		key: id,
-		style: { borderWidth: 0 },
+		style: {
+			borderWidth: 0,
+			opacity: 0
+		},
 		data: messages[id]
 	}))
-	const willEnter = () => ({ borderWidth: 0 })
+	const willEnter = () => ({
+		borderWidth: 0,
+		opacity: 0
+	})
 
 	return <TransitionMotion
 			willEnter={willEnter}
 			defaultStyles={defaults}
 			styles={styles} >
-			{ styles => <ul>
+			{ styles => <div>
 				{ styles.map( ({ key, style, data }) =>
 				    <Message key={key}
 						{...messages[key]}
 						style={{
-							borderColor: 'black',
+							overflow: 'auto',
+							clear:'both',
+							borderColor: 'white',
 							borderStyle: 'solid',
 							...style
 				    	}} />
 				)}
-			</ul> }
+			</div> }
 		</TransitionMotion>
 }
 
