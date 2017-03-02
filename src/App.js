@@ -10,7 +10,6 @@ const App = ({ data, newMessage }) => (
     <div>
         <div onClick={newMessage}>1-1asd;f</div>
         <CurrentMessageList />
-        <MotionTest />
     </div>
 )
 

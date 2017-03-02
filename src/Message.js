@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 
-const Message = ({ message, user }) => {
+const Message = ({ message, user, style}) => {
 	const float = user ==='Luke'? 'right': 'left'
-    return <li>
-    <span style = {{ float }} >
+    return <li style={style} >
+    <div style = {{ float }} >
 		{ user + ': ' + message }
-	</span>
+	</div>
 	</li>
 }
 
