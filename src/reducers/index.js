@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
-import { messages } from './messages'
+import { messageData as Message } from './messages'
+import { roomData as Room } from './rooms'
+import { userData as User} from  './users'
 
 const App = combineReducers({
-    messages
+    Message,
+    Room,
+    User
 })
 
 export default App

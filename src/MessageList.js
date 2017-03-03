@@ -4,13 +4,7 @@ import { TransitionMotion, spring } from 'react-motion'
 import Message from './Message'
 
 const MessageList = ({ messages }) => {
-	/*<ul> {
-		messages.map( msg =>
-			<Message key={msg.id}
-				{...msg}
-			/>
-		)}
-	</ul>*/console.log('wtf')
+
 	const styles = Object.keys(messages).map( id => ({
 		key: id,
 		style: {

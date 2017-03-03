@@ -4,7 +4,5 @@ export const Add = () => ({
 
 export const newMessage = (msg) => ({
     type: 'NEW_MESSAGE',
-    id: 'd',
-    user: 'Luke',
-    message: 'hello ya'
+    ...msg
 })

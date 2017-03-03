@@ -1,31 +1,54 @@
 const initMessages = {
-	a: {
-		id: '11',
-		user: 'Luke',
-		message: 'hi Han'
-	},
-	b: {
-		id: '12',
-		user: 'Han',
-		message: 'hey Luke'
-	},
-	c: {
-		id: '13',
-		user: 'Luke',
-		message: 'how\'s it going'
+	messages: {
+		'11': {
+			id: '11',
+			room: 'watsonroom',
+			sender: 'Luke',
+			time: new Date(1000),
+			message: 'hi Han'
+		},
+		'12': {
+			id: '12',
+			room: 'watsonroom',
+			sender: 'watson',
+			time: new Date(3002),
+			message: 'hey Luke'
+		},
+		'13': {
+			id: '13',
+			room: 'watsonroom',
+			sender: 'Luke',
+			time: new Date(6010),
+			message: 'how\'s it going'
+		}
 	}
 }
 
-export const messages = ( state = initMessages, action ) => {
+let count = 13
+const messages = ( state, action ) => {
     switch ( action.type ) {
         case 'NEW_MESSAGE':
             return {
 				...state,
-				[action.id]: {
-					id: action.id,
-					user: action.user,
-					message: action.message
+				['14']: {
+					sender: action.sender,
+					room: action.room,
+					message: action.message,
+					id: '14'
 				}
+			}
+        default:
+            return state
+    }
+}
+	
+export const messageData = ( state = initMessages, action ) => {
+	const msgs = state.messages
+    switch ( action.type ) {
+        case 'NEW_MESSAGE':
+            return {
+				...state,
+				messages: messages(msgs, action)
 			}
         default:
             return state
