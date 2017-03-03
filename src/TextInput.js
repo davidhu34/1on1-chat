@@ -1,5 +1,6 @@
 import React, { PropType, Component } from 'react'
 import { connect } from 'react-redux'
+
 import { newMessage } from './actions'
 
 const TextInput = ({ userID, roomID,
@@ -11,7 +12,11 @@ const TextInput = ({ userID, roomID,
 			placeholder="write message"
 
 		style={{
-
+			width: '100%',
+			row: 1.5,
+			fontSize: 20,
+			resize: 'none',
+			overflow: 'hidden'
 		}}>
 		</textarea>
 		<button onClick={ () => {
