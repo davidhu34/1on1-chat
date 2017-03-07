@@ -7,10 +7,16 @@ import { newMessage } from './actions'
 const TextInput = ({ userID, roomID,
 	newMessage
 }) => {
+	const sendIconStyle = {
+		size: 20,
+		color: 'Navy'
+	}
 	let input
 	return <div>
-		<table style={{width:'100%'}}>
-		<tr>
+		<table style={{
+			width:'100%',
+			border: '1px solid black'
+		}}><tbody><tr>
 		<td>
 			<textarea ref={ref => { input = ref }}
 			placeholder="write message"
@@ -19,24 +25,28 @@ const TextInput = ({ userID, roomID,
 				row: 1.5,
 				fontSize: 20,
 				resize: 'none',
+				border: 'none',
+				outline: 'none',
 				overflow: 'hidden'
 			}} >
 		</textarea>
-		</td><td width="60">
-			<div style={{
-				}}
-				onClick={ () => { console.log(input.value)
-					newMessage({
-						sender: userID,
-						room: roomID,
-						message: input.value
-					})
-				}}
-			>
-				<Send />
-			</div>
+		</td><td //width="60"
+			style={{
+				textAlign: 'center',
+				width: 60,
+				height: '100%'
+			}}
+			onClick={ () => { console.log(input.value)
+				newMessage({
+					sender: userID,
+					room: roomID,
+					message: input.value
+				})
+			}}
+		>
+			<Send {...sendIconStyle}/>
 		</td>
-		</tr></table>
+		</tr></tbody></table>
 	</div>
 }
 
