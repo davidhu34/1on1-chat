@@ -30,11 +30,11 @@ const messages = ( state, action ) => {
         case 'NEW_MESSAGE':
             return {
 				...state,
-				['14']: {
+				[action.local_id]: {
 					sender: action.sender,
 					room: action.room,
 					message: action.message,
-					id: '14'
+					local_id: action.local_id
 				}
 			}
         default:

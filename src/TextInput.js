@@ -9,7 +9,10 @@ const TextInput = ({ userID, roomID,
 }) => {
 	let input
 	return <div>
-		<textarea ref={ref => { input = ref }}
+		<table style={{width:'100%'}}>
+		<tr>
+		<td>
+			<textarea ref={ref => { input = ref }}
 			placeholder="write message"
 			style={{
 				width: '100%',
@@ -19,17 +22,21 @@ const TextInput = ({ userID, roomID,
 				overflow: 'hidden'
 			}} >
 		</textarea>
-		<button onClick={ () => {
-			console.log(input.value)
+		</td><td width="60">
+			<div style={{
+				}}
+				onClick={ () => { console.log(input.value)
 					newMessage({
 						sender: userID,
 						room: roomID,
 						message: input.value
 					})
 				}}
-		>
-			<Send />
-		</button>
+			>
+				<Send />
+			</div>
+		</td>
+		</tr></table>
 	</div>
 }
 

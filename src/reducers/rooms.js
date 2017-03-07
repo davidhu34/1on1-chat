@@ -15,7 +15,7 @@ const room = (state, action) => {
 			const id = action.room
 			return {
 				...state,
-				messages: [...state.messages, '14']
+				messages: [...state.messages, action.local_id]
 			}
 		default:
 			return state
