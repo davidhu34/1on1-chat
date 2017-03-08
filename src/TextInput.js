@@ -17,7 +17,8 @@ const TextInput = ({ userID, roomID, writing,
 	return <div>
 		<table style={{
 			width:'100%',
-			border: '1px solid Navy',
+			border: 'none',
+			borderBottom: '2px solid Navy',
 			WebKitScrollbar: {
 				width:20
 			}

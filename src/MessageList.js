@@ -25,8 +25,20 @@ const MessageList = ({ messages }) => {
 		borderWidth: 0,
 		opacity: 0
 	})
-
-	return <TransitionMotion
+	console.log(messages)
+	return (true)
+	? <div>
+		{
+			Object.keys(messages).map( id =>
+				<Message {...messages[id]}
+						style={{
+							borderColor: 'white',
+							borderStyle: 'solid',
+				    	}} />
+				  )
+		}
+	</div>
+	: <TransitionMotion
 			willEnter={willEnter}
 			defaultStyles={defaults}
 			styles={styles} >
