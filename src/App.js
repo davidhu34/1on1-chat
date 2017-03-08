@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { newMessage } from './actions'
-
 import CurrentMessageList from './CurrentMessageList'
 import TextInput from './TextInput'
 import MotionTest from './MotionTest'

@@ -3,7 +3,8 @@ const initRooms = {
 		'watsonroom': {
 			id: 'watsonroom',
 			users: ['Luke', 'watson'],
-			messages: ['11', '12', '13']
+			messages: ['11', '12', '13'],
+			writing: ''
 		}
 	},
 	currentRoom: 'watsonroom'
@@ -11,10 +12,15 @@ const initRooms = {
 
 const room = (state, action) => {
 	switch (action.type) {
-		case 'NEW_MESSAGE':
-			const id = action.room
+		case 'UPDATE_MESSAGE':
 			return {
 				...state,
+				writing: action.message
+			}
+		case 'NEW_MESSAGE':
+			return {
+				...state,
+				writing: '',
 				messages: [...state.messages, action.local_id]
 			}
 		default:
@@ -23,6 +29,7 @@ const room = (state, action) => {
 }
 const rooms = (state, action) => {
 	switch (action.type) {
+		case 'UPDATE_MESSAGE':
 		case 'NEW_MESSAGE':
 			const id = action.room
 			return {
@@ -36,6 +43,7 @@ const rooms = (state, action) => {
 export const roomData = (state = initRooms, action) => {
 	const { currentRoom } = state
 	switch (action.type) {
+		case 'UPDATE_MESSAGE':
 		case 'NEW_MESSAGE':
 			return (action.room === currentRoom)? {
 				...state,
