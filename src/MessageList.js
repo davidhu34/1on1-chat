@@ -26,36 +26,18 @@ const MessageList = ({ messages }) => {
 		opacity: 0
 	})
 	console.log(messages)
-	return (true)
-	? <div>
-		{
-			Object.keys(messages).map( id =>
-				<Message {...messages[id]}
-						style={{
-							borderColor: 'white',
-							borderStyle: 'solid',
-				    	}} />
-				  )
-		}
-	</div>
-	: <TransitionMotion
-			willEnter={willEnter}
-			defaultStyles={defaults}
-			styles={styles} >
-			{ styles => <div>
-				{ styles.map( ({ key, style, data }) =>
-				    <Message key={key}
-						{...messages[key]}
-						style={{
-							overflow: 'auto',
-							clear:'both',
-							borderColor: 'white',
-							borderStyle: 'solid',
-							...style
-				    	}} />
-				)}
-			</div> }
-		</TransitionMotion>
+	return <TransitionMotion
+		willEnter={willEnter}
+		defaultStyles={defaults}
+		styles={styles} >
+		{ styles => <div>
+			{ styles.map( ({ key, style, data }) =>
+			    <Message key={key}
+					{...messages[key]}
+					motion={style} />
+			)}
+		</div> }
+	</TransitionMotion>
 }
 
 MessageList.propTypes = {

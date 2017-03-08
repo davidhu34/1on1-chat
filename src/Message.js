@@ -3,7 +3,7 @@ import { TransitionMotion, spring } from 'react-motion'
 import moment from 'moment'
 
 
-const Message = ({ style,
+const Message = ({ motion,
 	local_id, message, sender, time
 }) => {
 	const float = sender ==='Luke'?
@@ -39,7 +39,7 @@ const Message = ({ style,
     const cell = sender ==='Luke'?
 		[timeTag,main]:[main,timeTag]
 	
-    return <div style={style}>
+    return <div style={motion}>
     <table style={{width:'100%'}}><tbody>
     	<tr style={{
     		maxWidth: '80%',
