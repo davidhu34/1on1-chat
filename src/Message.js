@@ -1,21 +1,23 @@
 import React, { PropTypes } from 'react'
+import { TransitionMotion, spring } from 'react-motion'
 import moment from 'moment'
 
-const Message = ({ message, sender, time, style }) => {
+
+const Message = ({ style,
+	local_id, message, sender, time
+}) => {
+	const float = sender ==='Luke'?
+		'right': 'left'
+
 	const selfMsgStyle = sender ==='Luke'
 		? {
-			//float: 'right',
 			backgroundColor: 'SteelBlue'
 		} : {
-			//float: 'left',
 			backgroundColor: 'RoyalBlue'
 		}
-	const main = <td style={{
-			//width: '60%',
-			wordBreak: 'break-all'
-		}}>
-	<div style={style} >
-	    <div style = {{ ...selfMsgStyle,
+	const main = <td>
+		<div style = {{ ...selfMsgStyle,
+				wordBreak: 'break-all',
 		    	fontSize: '20',
 				color: 'white',
 				borderRadius: 30,
@@ -27,19 +29,26 @@ const Message = ({ message, sender, time, style }) => {
 				line? <span>{line}<br/></span> : <span/>
 			)}
 		</div>
-	</div></td>
-
-	const timeTag = <td style={{
-			//width: '40%',
-			color: 'RoyalBlue'
-		}}>{moment(time).format()}</td>
-    const line = sender ==='Luke'?
+	</td>
+	const timeTag = <td
+		style={{
+			color: 'RoyalBlue',
+		}}>
+		{moment(time).format()}
+	</td>
+    const cell = sender ==='Luke'?
 		[timeTag,main]:[main,timeTag]
-	const float = sender ==='Luke'? 'right': 'left'
-    return <table style={{width:'100%'}}><tbody>
-    <tr style={{float: float}}>
-    	{line}
-    </tr></tbody></table>
+	
+    return <div style={style}>
+    <table style={{width:'100%'}}><tbody>
+    	<tr style={{
+    		maxWidth: '80%',
+    		float: float,
+    		align: float
+    	}} >
+    		{cell}
+    	</tr>
+    </tbody></table></div>
 }
 
 Message.propTypes = {
