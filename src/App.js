@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { newMessage } from './actions'
+import { newMessage, Add } from './actions'
 import CurrentMessageList from './CurrentMessageList'
 import TextInput from './TextInput'
 import MotionTest from './MotionTest'
 
-const App = ({ data, newMessage }) => (
+const App = ({ data, newMessage, add }) => (
     <div>
-        <div onClick={newMessage}>1-1asd;f</div>
+        <div onClick={add}>get</div>
         <CurrentMessageList />
         <TextInput />
     </div>
@@ -18,6 +18,7 @@ const App = ({ data, newMessage }) => (
 export default connect(
     state => ({ ...state }),
     dispatch => ({
-        newMessage: () => dispatch( newMessage() )
+        newMessage: () => dispatch( newMessage() ),
+        add: () => dispatch(Add())
     })
 )(App)

@@ -2,7 +2,7 @@
   "name": "1-1-chat",
   "version": "0.0.0",
   "scripts": {
-    "start": "node server.js",
+    "start": "node devServer.js",
     "lint": "eslint src"
   },
   "devDependencies": {

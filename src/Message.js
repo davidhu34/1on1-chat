@@ -34,7 +34,7 @@ const Message = ({ motion,
 		style={{
 			color: 'RoyalBlue',
 		}}>
-		{moment(time).format()}
+		{moment(time).format("hh:mm:ss")}
 	</td>
     const cell = sender ==='Luke'?
 		[timeTag,main]:[main,timeTag]

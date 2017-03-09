@@ -10,7 +10,7 @@ const TextInput = ({ userID, roomID, writing,
 	updateMessage, newMessage
 }) => {
 	const sendIconStyle = {
-		size: 20,
+		size: 30,
 		color: 'Navy'
 	}
 	let input
@@ -26,7 +26,7 @@ const TextInput = ({ userID, roomID, writing,
 		<td>
 			<TextField
 				style={{
-					fontSize: 20
+					fontSize: 30
 				}}
 				hintText="write message ..."
 				fullWidth={true}

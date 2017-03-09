@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Robot</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+		<script src='http://code.jquery.com/jquery-1.4.2.min.js'></script>
+		<script type="text/JavaScript" src="http://iot.eclipse.org/demo/js/mqttws31.js"></script>
+
+		<script>
+			var robot = angular.module('robot', []);
+		</script>
+
+		<script>
+			robot.controller('robotCtrl', function($scope, $rootScope, $http){
+				$scope.initialize = function() {
+					$scope.viewStage = 'initialize';
+
+					iot_server = "j6w08m.messaging.internetofthings.ibmcloud.com";
+					iot_port = 1883;
+					iot_username = "a-j6w08m-xqtafr0bj5";
+					iot_password = "ex?u03ggrwBD+-&VvZ"; //tommywu-iot-lggpad
+					iot_clientid = "a:j6w08m:robot122" + Math.floor(Math.random() * 1000);
+					// iotFoundation.CLIENT_ID = 'd:<ORG ID>:WICED-Sense:8675309'; // change this - the format is:  d:<organization>:<device type>:<device ID>
+
+					var	iotf_client = new Messaging.Client(iot_server, iot_port, iot_clientid);
+					iotf_client.onConnectionLost = onConnectionLost;
+					iotf_client.onMessageArrived = onMessageArrived;
+
+					iotf_client.connect({
+						timeout: 30,
+						userName: iot_username,
+						password: iot_password,
+						onSuccess: function() {
+							console.log('Connected to IoT Foundation!')
+							iotf_client.subscribe("iot-2/type/robot/id/phone02/evt/subtitle/fmt/+");
+						},
+						onFailure: function(message) {
+							console.log("Connected to IoT Foundation Failed: "+message.errorMessage)
+						}
+					});
+
+					function onConnectionLost(responseObject) {
+						console.log(responseObject.toString());
+						if (responseObject.errorCode !== 0){
+							console.log("onConnectionLost:"+responseObject.errorMessage);
+						}
+					};
+
+
+					function onMessageArrived(message) {
+						var data = message.payloadString;
+						console.log(data);
+						$scope.$apply(function(){
+							$scope.viewStage = 'subtitle';
+							$(function(){
+								$scope.subtitle = '';
+								var str = data;
+								var i = 0;
+								var typing_inst = setInterval(typing, 200);
+								function typing()
+								{
+									if(i < str.length -1)
+									{
+										$('#subtitle').text(str.substr(0,i));
+										i++;
+									}
+									else if(i == str.length-1)
+									{
+										$('#subtitle').text(str);
+										clearInterval(typing_inst);
+									}
+								}
+							});
+						})
+					}
+
+				}	
+			})
+
+			
+		</script>
+
+	</head>
+	<body ng-app="robot" ng-controller="robotCtrl" ng-init="initialize()" ng-cloak>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<header id="header" class="alt">
+					<a class="logo" ng-click="initialize()"><strong>IBM</strong> <span>Cloud Innovation Day</span></a>
+				</header>
+
+				<!-- Banner -->
+					<section id="banner" class="major" ng-show="viewStage == 'initialize'">
+						<div class="inner">
+							<header class="major">
+								<h2>雲商機 創智紀</h2>
+								<p>雲端布局，創新開發</p>
+							</header>
+						</div>
+					</section>
+
+					<section id="banner" class="major" ng-show="viewStage == 'subtitle'">
+						<div class="inner">
+							<header class="major">
+								<h2 id="subtitle"></h2>
+							</header>
+						</div>
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one" class="tiles">
+								<article>
+									<span class="image">
+										<img src="images/drone.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="http://google.com" class="link">無人機</a></h3>
+										<p>超強ㄉ</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/robot.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="http://google.com" class="link">機器人</a></h3>
+										<p>抄猛ㄉ</p>
+									</header>
+								</article>
+							</section>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
