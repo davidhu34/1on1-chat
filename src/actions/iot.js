@@ -1,6 +1,6 @@
 import mqtt from 'mqtt'
 
-import  { url, opt } from '../configs/mqtt'
+import  { url, opts } from '../configs/mqtt'
 
 
 const iot_client = mqtt.connect(url, opts);

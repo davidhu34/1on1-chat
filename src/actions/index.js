@@ -1,6 +1,13 @@
 import messageHash from '../utils/localMessageHash'
 import iot_client from './iot'
 
+
+export const toggleOpen = ({anchor, open}) => ({
+	type: 'TOGGLE_OPEN',
+	anchor, open
+})
+
+
 export const Add = () => {/*
 	//IBM iot pub/sub drone navdata
 

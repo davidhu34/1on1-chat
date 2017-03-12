@@ -5,6 +5,7 @@ import { newMessage, Add } from './actions'
 import CurrentMessageList from './CurrentMessageList'
 import TextInput from './TextInput'
 import MotionTest from './MotionTest'
+import Floater from './Floater'
 
 const App = ({ data, newMessage, add }) => (
     <div style={{
@@ -15,6 +16,7 @@ const App = ({ data, newMessage, add }) => (
         <div onClick={add}>get</div>
         <CurrentMessageList />
         <TextInput />
+        <Floater />
     </div>
 )
 
