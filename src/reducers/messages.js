@@ -34,14 +34,15 @@ const messages = ( state, action ) => {
 					sender: action.sender,
 					room: action.room,
 					message: action.message,
-					local_id: action.local_id
+					local_id: action.local_id,
+					time: action.time
 				}
 			}
         default:
             return state
     }
 }
-	
+
 export const messageData = ( state = initMessages, action ) => {
 	const msgs = state.messages
     switch ( action.type ) {

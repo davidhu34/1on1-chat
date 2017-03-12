@@ -1,5 +1,5 @@
 import messageHash from '../utils/localMessageHash'
-import iot_client from './iot'
+//import iot_client from './iot'
 
 
 export const toggleOpen = ({anchor, open}) => ({
@@ -32,7 +32,7 @@ export const Add = () => {/*
 		(err, granted)=>{console.log(er, granted)});
 	})*/
 
-	iot_client.publish('iot-2/evt/web/fmt/json', JSON.stringify({d:{"data": "hi"}}) );
+	//iot_client.publish('iot-2/evt/web/fmt/json', JSON.stringify({d:{"data": "hi"}}) )
 
 	return {
 	    type: 'ADD'

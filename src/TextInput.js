@@ -55,7 +55,8 @@ const TextInput = ({ userID, roomID, writing,
 				newMessage({
 					sender: userID,
 					room: roomID,
-					message: writing
+					message: writing,
+					time: new Date()
 				})
 			}}
 		>

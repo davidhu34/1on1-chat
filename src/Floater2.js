@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { TransitionMotion, spring } from 'react-motion'
 
 import Send from 'react-icons/lib/md/send'
-import RaisedButton from 'material-ui/RaisedButton'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
 import Popover from 'material-ui/Popover/Popover'
 import Messenger from './Messenger'
 
@@ -48,9 +48,9 @@ const Floater = ({ anchor, open, toggleOpen }) => {
             { block }
         </div>
         <div style={{position:'absolute',bottom:5, right:5}}onClick={ e => toggleOpen(!open, null)}>
-            <RaisedButton
-            label="Click me"
-            />
+            <FloatingActionButton>
+                <Send />
+            </FloatingActionButton>
         </div>
     </div>
 }
