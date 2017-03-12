@@ -2,22 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { newMessage, Add } from './actions'
-import CurrentMessageList from './CurrentMessageList'
-import TextInput from './TextInput'
 import MotionTest from './MotionTest'
-import Floater from './Floater'
+import Floater from './Floater2'
+import Messenger from './Messenger'
 
 const App = ({ data, newMessage, add }) => (
-    <div style={{
-        width: 400,
-        height: 600,
-        position: 'relative'
-    }}>
-        <div onClick={add}>get</div>
-        <CurrentMessageList />
-        <TextInput />
-        <Floater />
-    </div>
+<div>
+    <div onClick={add}>get</div>
+    <Messenger />
+    <Floater />
+</div>
 )
 
 

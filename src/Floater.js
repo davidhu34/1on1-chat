@@ -9,8 +9,12 @@ import { toggleOpen } from './actions'
 
 const Floater = ({ anchor, open, toggleOpen }) => {
 console.log( anchor, open, toggleOpen )
-    return <div>
-    <div onClick={toggleOpen}>
+    return <div style={{
+        position: 'absolute',
+        bottom: 0,
+        right: 0
+    }}>
+    <div onClick={ e => toggleOpen(true, e.currentTarget)}>
         <RaisedButton
           label="Click me"
         />
@@ -19,6 +23,7 @@ console.log( anchor, open, toggleOpen )
             anchorEl={anchor}
             anchorOrigin={{"horizontal":"middle","vertical":"top"}}
             targetOrigin={{horizontal:"right",vertical:"bottom"}}
+            onRequestClose={toggleOpen(false, anchor)}
         >
             <Send />
         </Popover>
@@ -31,12 +36,9 @@ export default connect(
         open: state.ui.open
     }),
     dispatch => ({
-        toggleOpen: (e) => {
+        toggleOpen: (open, anchor) => {
             dispatch(
-                toggleOpen({
-                    open: true,
-                    anchor: e.currentTarget
-                })
+                toggleOpen({ open, anchor })
             )
         }
     })
