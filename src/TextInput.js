@@ -14,7 +14,10 @@ const TextInput = ({ userID, roomID, writing,
 		color: 'Navy'
 	}
 	let input
-	return <div>
+	return <div style={{
+		position: 'absolute',
+		bottom: 0
+	}}>
 		<table style={{
 			width:'100%',
 			border: 'none',

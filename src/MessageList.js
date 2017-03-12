@@ -26,7 +26,11 @@ const MessageList = ({ messages }) => {
 		opacity: 0
 	})
 	console.log(messages)
-	return <TransitionMotion
+	return <div style={{
+		height:'100%',
+		overflowY: 'scroll'
+	}} >
+	<TransitionMotion
 		willEnter={willEnter}
 		defaultStyles={defaults}
 		styles={styles} >
@@ -38,6 +42,7 @@ const MessageList = ({ messages }) => {
 			)}
 		</div> }
 	</TransitionMotion>
+	</div>
 }
 
 MessageList.propTypes = {

@@ -7,7 +7,11 @@ import TextInput from './TextInput'
 import MotionTest from './MotionTest'
 
 const App = ({ data, newMessage, add }) => (
-    <div>
+    <div style={{
+        width: 400,
+        height: 600,
+        position: 'relative'
+    }}>
         <div onClick={add}>get</div>
         <CurrentMessageList />
         <TextInput />
