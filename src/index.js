@@ -4,9 +4,11 @@ import { Provider } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import { freshStore } from './configureStore'
+import { api } from './actions/api'
 import App from './App'
 
 const store = freshStore()
+const socket = api(store.dispatch)
 
 render(
     <Provider store={store} >

@@ -10,7 +10,6 @@ import Messenger from './Messenger'
 import { toggleOpen } from './actions'
 
 const Floater = ({ anchor, open, toggleOpen }) => {
-    console.log( anchor, open, toggleOpen )
     const defaults = [{
         key: '0',
         style: { scale:0, opacity: 0 }

@@ -4,7 +4,6 @@ import MessageList from './MessageList'
 
 export default connect(
     ({ Message, Room, User }) => {
-    	console.log(Room, Message, User)
     	const room = Room.rooms[Room.currentRoom]
     	const msgs = room.messages
     		.map( id => Message.messages[id] )
