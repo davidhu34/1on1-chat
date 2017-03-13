@@ -2,7 +2,7 @@ import React, { PropType, Component } from 'react'
 import { connect } from 'react-redux'
 import { TransitionMotion, spring } from 'react-motion'
 
-import Send from 'react-icons/lib/md/send'
+import Message from 'react-icons/lib/md/message'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import Popover from 'material-ui/Popover/Popover'
 import Messenger from './Messenger'
@@ -26,30 +26,29 @@ const Floater = ({ anchor, open, toggleOpen }) => {
         scale:spring(0),
         opacity:spring(0)
     })
-    const block = open? <div style={{
-        positon: 'absolute', bottom: 50, right:0,
-        zIndex:0
+    const block = open? <TransitionMotion
+            defaultStyles={defaults}
+            styles={styles}
+            willLeave={willLeave} >
+            {styles => <Messenger style={styles[0].style} />}
+    </TransitionMotion> : <div />
+
+    return <div style={{
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        zIndex: 0
     }}>
-
-    <TransitionMotion
-        defaultStyles={defaults}
-        styles={styles}
-        willLeave={willLeave}
-    >
-        {istyle => <Messenger style={istyle[0].style} />}
-    </TransitionMotion></div> : <div />
-
-    return <div>
         <div style={{
             position: 'absolute',
-            bottom: 20,
-            right: 20
-        }}>
+            bottom: 65,
+            right: 0
+        }} >
             { block }
         </div>
-        <div style={{position:'absolute',bottom:5, right:5}}onClick={ e => toggleOpen(!open, null)}>
-            <FloatingActionButton>
-                <Send />
+        <div style={{position:'absolute',bottom:0, right:0}}onClick={ e => toggleOpen(!open, null)}>
+            <FloatingActionButton backgroundColor="Navy" >
+                <Message />
             </FloatingActionButton>
         </div>
     </div>
