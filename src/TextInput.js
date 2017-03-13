@@ -6,7 +6,8 @@ import TextField from 'material-ui/TextField'
 
 import { updateMessage, newMessage } from './actions'
 
-const TextInput = ({ userID, roomID, writing,
+const TextInput = ({
+	userID, roomID, writing,
 	updateMessage, newMessage
 }) => {
 	const sendIconStyle = {
@@ -45,21 +46,20 @@ const TextInput = ({ userID, roomID, writing,
 				}}
 				value={writing}
 			/>
-		</td><td //width="60"
-			style={{
+		</td><td style={{
 				textAlign: 'center',
 				width: 60,
 				height: '100%'
 			}}
-			onClick={ (e) => { //console.log(input.value)
-				newMessage({
-					sender: userID,
-					room: roomID,
-					message: writing,
-					time: new Date()
-				})
-			}}
-		>
+			onClick={ (e) => {
+				if (writing !== '')
+					newMessage({
+						sender: userID,
+						room: roomID,
+						message: writing,
+						time: new Date()
+					})
+			}} >
 			<Send {...sendIconStyle}/>
 		</td>
 		</tr></tbody></table>

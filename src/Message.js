@@ -6,17 +6,32 @@ import moment from 'moment'
 const Message = ({ motion,
 	local_id, message, sender, time
 }) => {
-	const float = sender ==='Luke'?
-		'right': 'left'
-
-	const selfMsgStyle = sender ==='Luke'
-		? {
+	const styles = [{
+		key: local_id,
+		style: {
+			opacity: spring(1)
+		},
+		data: message
+	}]
+	const defaults =[{
+		key: local_id,
+		style: {
+			opacity: 0
+		},
+		data: message
+	}]
+	const willEnter = () => ({
+		opacity: 0
+	})
+	const fromSelf = sender ==='Luke'
+	const float = fromSelf? 'right': 'left'
+	const msgStyle = fromSelf? {
 			backgroundColor: 'SteelBlue'
 		} : {
 			backgroundColor: 'RoyalBlue'
 		}
 	const main = <td>
-		<div style = {{ ...selfMsgStyle,
+		<div style = {{ ...msgStyle,
 				wordBreak: 'break-all',
 		    	fontSize: '20',
 				color: 'white',
@@ -33,22 +48,33 @@ const Message = ({ motion,
 	const timeTag = <td
 		style={{
 			color: 'RoyalBlue',
-		}}>
+		}} >
 		{moment(time).format("hh:mm:ss")}
 	</td>
-    const cell = sender ==='Luke'?
+    const cell = fromSelf?
 		[timeTag,main]:[main,timeTag]
-	
-    return <div style={motion}>
-    <table style={{width:'100%'}}><tbody>
-    	<tr style={{
-    		maxWidth: '80%',
-    		float: float,
-    		align: float
-    	}} >
-    		{cell}
-    	</tr>
-    </tbody></table></div>
+
+    return <TransitionMotion
+		defaultStyles={defaults}
+		styles={styles}
+		willEnter={willEnter}
+	>
+		{ styles => <table style={{
+				width:'100%'
+			}} ><tbody>
+			{ styles.map( s =>
+				<tr style={{
+						...s.style,
+						maxWidth: '80%',
+			    		float: float,
+			    		align: float
+					}}
+					key={s.key} >
+			    	{ cell }
+			    </tr>
+			)}
+		</tbody></table> }
+	</TransitionMotion>
 }
 
 Message.propTypes = {
