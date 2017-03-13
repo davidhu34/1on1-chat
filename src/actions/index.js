@@ -2,8 +2,6 @@
 import messageHash from '../utils/localMessageHash'
 import { newMsg } from './api'
 
-
-
 export const updateMessage = (msg) => ({
 	type: 'UPDATE_MESSAGE',
 	...msg

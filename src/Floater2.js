@@ -47,7 +47,13 @@ const Floater = ({ anchor, open, toggleOpen }) => {
         </div>
         <div style={{position:'absolute',bottom:0, right:0}}onClick={ e => toggleOpen(!open, null)}>
             <FloatingActionButton backgroundColor="Navy" >
-                <Message />
+                <div style={{paddingTop: 5}}>
+                <img src="/watson.png"
+                    style={{
+                        width: 40,
+                        height: 40
+                    }} />
+                </div>
             </FloatingActionButton>
         </div>
     </div>

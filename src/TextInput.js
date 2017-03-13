@@ -60,7 +60,7 @@ const TextInput = ({
 						time: new Date()
 					})
 			}} >
-			<Send {...sendIconStyle}/>
+			<Send {...sendIconStyle} />
 		</td>
 		</tr></tbody></table>
 	</div>

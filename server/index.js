@@ -5,7 +5,8 @@ const path = require('path')
 const socketio = require('socket.io');
 const express = require('express');
 
-const { PORT } = require('./config')
+//const { PORT } = require('./configs')
+const PORT = 5000
 const { normalizePort, onError, onListening } = require('./util')
 const applyMiddlewares = require('./middlewares')
 const api = require('./api')
