@@ -8,8 +8,6 @@ import Messenger from './Messenger'
 
 const App = ({ data, newMessage, add }) => (
 <div>
-    <div onClick={add}>get</div>
-    <Messenger />
     <Floater />
 </div>
 )

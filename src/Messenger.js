@@ -8,8 +8,22 @@ export default ({ data, newMessage, add }) => (
     <Paper style={{
         width: 400,
         height: 600,
-        position: 'relative'
+        position: 'relative',
+        opacity:0.9
     }}>
+        <div style={{
+            position: 'absolute',
+            top: 0,
+            zIndex: 1,
+            width: '100%',
+            height: 50,
+            backgroundColor: 'Navy',
+            textAlign: 'center',
+            color: 'white',
+            fontSize: 20
+        }} >
+        Watson
+        </div>
         <CurrentMessageList />
         <TextInput />
     </Paper>
