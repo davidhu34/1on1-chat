@@ -30,12 +30,13 @@ const TextInput = ({
 		<td>
 			<TextField
 				style={{
-					fontSize: 30
+					fontSize: 20,
+					width: '100%'
 				}}
 				hintText="write message ..."
 				fullWidth={true}
 				multiLine={true}
-				rowsMax={4}
+				rowsMax={2}
 				underlineShow={false}
 				onChange={ (e) => {
 					updateMessage({

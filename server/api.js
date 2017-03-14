@@ -1,6 +1,11 @@
 //const ensureLogin = require('connect-ensure-login')
 const md5 = require('md5')
 const { Router } = require('express')
+const OpenCC = require('opencc')
+const opencc = new OpenCC('s2twp.json')
+
+
+
 const iot = require('./iot');
 
 const users = {}
@@ -40,12 +45,13 @@ module.exports = ( io, models ) => {
     iot.on('message', (t,p)=>{
         console.log('t:',t, 'p:',JSON.parse(p))
         const payload = JSON.parse(p)
+        const msg = opencc.convertSync(payload.message).replace(/\s/g,'')
         users[payload.sid].socket
             .emit('MESSAGE', {
                 local_id: md5(JSON.stringify(payload)),
                 sender: 'watson',
                 room: 'watsonroom',
-                message: payload.message,
+                message: msg,
                 time: new Date()
             })
     })

@@ -33,10 +33,10 @@ const Message = ({ motion,
 	const main = <td>
 		<div style = {{ ...msgStyle,
 				wordBreak: 'break-all',
-		    	fontSize: '20',
+		    	fontSize: 15,
 				color: 'white',
-				borderRadius: 30,
-				padding: 20,
+				borderRadius: 15,
+				padding: 15,
 				display: 'inline-block'
 			}} >
 			{ message.split('\n').map( line =>
@@ -47,6 +47,7 @@ const Message = ({ motion,
 	const timeTag = <td
 		style={{
 			color: 'RoyalBlue',
+			fontSize: 10
 		}} >
 		{moment(time).format("hh:mm:ss")}
 	</td>

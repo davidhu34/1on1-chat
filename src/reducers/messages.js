@@ -5,7 +5,7 @@ const initMessages = {
 			room: 'watsonroom',
 			sender: 'watson',
 			time: new Date(),
-			message: 'My name is Watson. How may I help you?'
+			message: '嗨我是Watson,很高興認識你!'
 		}/*,
 		'12': {
 			id: '12',

@@ -4,7 +4,7 @@ const initRooms = {
 			id: 'watsonroom',
 			users: ['Luke', 'watson'],
 			messages: ['11'],//, '12', '13'],
-			writing: ''
+			writing: ""
 		}
 	},
 	currentRoom: 'watsonroom'
