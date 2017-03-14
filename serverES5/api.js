@@ -6,6 +6,9 @@ var md5 = require('md5');
 var _require = require('express'),
     Router = _require.Router;
 
+var OpenCC = require('opencc');
+var opencc = new OpenCC('s2twp.json');
+
 var iot = require('./iot');
 
 var users = {};
@@ -42,11 +45,12 @@ module.exports = function (io, models) {
     iot.on('message', function (t, p) {
         console.log('t:', t, 'p:', JSON.parse(p));
         var payload = JSON.parse(p);
+        var msg = opencc.convertSync(payload.message).replace(/\s/g, '');
         users[payload.sid].socket.emit('MESSAGE', {
             local_id: md5(JSON.stringify(payload)),
             sender: 'watson',
             room: 'watsonroom',
-            message: payload.message,
+            message: msg,
             time: new Date()
         });
     });
