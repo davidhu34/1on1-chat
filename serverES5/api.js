@@ -26,10 +26,9 @@ module.exports = function (io, models) {
 
         socket.on('MESSAGE', function (msg) {
             console.log('received msg:', msg);
-            iot.publish('iot-2/evt/web/fmt/json', JSON.stringify({ d: {
-                    data: msg.message,
-                    sid: id
-                } }));
+            var payload = msg;
+            msg.sid = id;
+            iot.publish('iot-2/evt/web/fmt/json', JSON.stringify({ d: payload }));
 
             var reply = "machine reply";
         });
@@ -43,12 +42,11 @@ module.exports = function (io, models) {
     iot.on('message', function (t, p) {
         console.log('t:', t, 'p:', JSON.parse(p));
         var payload = JSON.parse(p);
-        var reply = " reply";
         users[payload.sid].socket.emit('MESSAGE', {
             local_id: md5(JSON.stringify(payload)),
             sender: 'watson',
             room: 'watsonroom',
-            message: payload.data + reply,
+            message: payload.message,
             time: new Date()
         });
     });

@@ -21,13 +21,10 @@ module.exports = ( io, models ) => {
 
         socket.on('MESSAGE', (msg) => {
             console.log('received msg:', msg)
+            let payload = msg
+            msg.sid = id
             iot.publish('iot-2/evt/web/fmt/json',
-                JSON.stringify(
-                    {d:{
-                        data: msg.message,
-                        sid: id
-                    }}
-                )
+                JSON.stringify({d: payload})
             )
 
             const reply = "machine reply"
@@ -43,13 +40,12 @@ module.exports = ( io, models ) => {
     iot.on('message', (t,p)=>{
         console.log('t:',t, 'p:',JSON.parse(p))
         const payload = JSON.parse(p)
-        const reply = " reply"
         users[payload.sid].socket
             .emit('MESSAGE', {
                 local_id: md5(JSON.stringify(payload)),
                 sender: 'watson',
                 room: 'watsonroom',
-                message: payload.data+reply,
+                message: payload.message,
                 time: new Date()
             })
     })
