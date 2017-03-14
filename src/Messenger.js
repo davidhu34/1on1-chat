@@ -14,10 +14,11 @@ export default ({ data, newMessage, add }) => (
         <div style={{
             position: 'absolute',
             top: 0,
+            paddingTop: 15,
             zIndex: 1,
             width: '100%',
-            height: 50,
-            backgroundColor: 'Navy',
+            height: 40,
+            backgroundColor: 'RoyalBlue',
             textAlign: 'center',
             color: 'white',
             fontSize: 20

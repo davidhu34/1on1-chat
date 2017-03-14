@@ -3,10 +3,10 @@ const initMessages = {
 		'11': {
 			id: '11',
 			room: 'watsonroom',
-			sender: 'Luke',
-			time: new Date(1000),
-			message: 'hi Han'
-		},
+			sender: 'watson',
+			time: new Date(),
+			message: 'My name is Watson. How may I help you?'
+		}/*,
 		'12': {
 			id: '12',
 			room: 'watsonroom',
@@ -20,7 +20,7 @@ const initMessages = {
 			sender: 'Luke',
 			time: new Date(6010),
 			message: 'how\'s it going'
-		}
+		}*/
 	}
 }
 

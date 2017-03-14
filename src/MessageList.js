@@ -20,7 +20,7 @@ class MessageList extends Component {
 
 		return <div ref="scroll"
 			style={{
-				height:'500',
+				height: 495,
 				width: '100%',
 				overflowY: 'scroll',
 				position: 'absolute',

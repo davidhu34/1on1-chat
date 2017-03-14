@@ -22,7 +22,7 @@ const TextInput = ({
 		<table style={{
 			width:'100%',
 			border: 'none',
-			borderBottom: '2px solid Navy',
+			borderBottom: '2px solid RoyalBlue',
 			WebKitScrollbar: {
 				width:20
 			}

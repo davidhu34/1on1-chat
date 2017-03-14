@@ -3,7 +3,7 @@ const initRooms = {
 		'watsonroom': {
 			id: 'watsonroom',
 			users: ['Luke', 'watson'],
-			messages: ['11', '12', '13'],
+			messages: ['11'],//, '12', '13'],
 			writing: ''
 		}
 	},

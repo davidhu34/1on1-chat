@@ -39,7 +39,6 @@ const Message = ({ motion,
 				padding: 20,
 				display: 'inline-block'
 			}} >
-			{ sender + ': '}
 			{ message.split('\n').map( line =>
 				line? <span>{line}<br/></span> : <span/>
 			)}

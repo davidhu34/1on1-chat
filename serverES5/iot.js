@@ -13,8 +13,5 @@ iot_client.on('connect', function () {
 iot_client.subscribe('iot-2/cmd/+/fmt/+', function (err, granted) {
 	console.log('subscribed command, granted: ' + JSON.stringify(granted));
 });
-iot_client.on('message', function (t, p) {
-	console.log('t:', t, 'p:', p);
-});
 
 module.exports = iot_client;
