@@ -10,11 +10,24 @@ const TextInput = ({
 	userID, roomID, writing,
 	updateMessage, newMessage
 }) => {
+	let input
+
+	const sendNewMessage = () => {
+		const text = input.value
+		if (text !== '')
+			newMessage({
+				sender: userID,
+				room: roomID,
+				message: text,
+				time: new Date()
+			})
+		input.value = ''
+	}
 	const sendIconStyle = {
-		size: 30,
+		size: 25,
 		color: 'Navy'
 	}
-	let input
+
 	return <div style={{
 		position: 'absolute',
 		bottom: 0
@@ -26,40 +39,37 @@ const TextInput = ({
 			WebKitScrollbar: {
 				width:20
 			}
-		}}><tbody><tr>
+		}}><tbody><tr style={{
+			width: '100%'
+		}}>
 		<td>
-			<TextField
+			<textarea ref={ ref => { input = ref } }
 				style={{
 					fontSize: 20,
-					width: '100%'
+					paddingLeft: 10,
+					width: '100%',
+					height: 'auto',
+					overflow: 'hidden',
+					resize: 'none',
+					border: 'none',
+					outline: 'none',
+					verticalAlign: 'bottom'
 				}}
-				hintText="write message ..."
-				fullWidth={true}
-				multiLine={true}
-				rowsMax={2}
-				underlineShow={false}
-				onChange={ (e) => {
-					updateMessage({
-						sender: userID,
-						room: roomID,
-						message: e.target.value
-					})
-				}}
-				value={writing}
-			/>
-		</td><td style={{
+				placeholder="ask watson..."
+				onKeyPress={ (e) => {
+					if (e.key === 'Enter' && !e.shiftKey){
+					    e.preventDefault()
+						sendNewMessage()
+					}
+				}}>
+
+			</textarea>
+
+		</td><td onClick={ (e) => sendNewMessage() }
+			style={{
 				textAlign: 'center',
 				width: 60,
 				height: '100%'
-			}}
-			onClick={ (e) => {
-				if (writing !== '')
-					newMessage({
-						sender: userID,
-						room: roomID,
-						message: writing,
-						time: new Date()
-					})
 			}} >
 			<Send {...sendIconStyle} />
 		</td>
@@ -81,3 +91,23 @@ export default connect(
 			(msg) => dispatch(updateMessage(msg))
 	})
 )(TextInput)
+/*<TextField
+	style={{
+		fontSize: 20,
+		width: '100%'
+	}}
+	hintText="write message ..."
+	fullWidth={true}
+	multiLine={true}
+	rowsMax={2}
+	underlineShow={false}
+	onChange={ (e) => {
+		updateMessage({
+			sender: userID,
+			room: roomID,
+			message: e.target.value
+		})
+	}}
+	value={writing}
+/>
+*/

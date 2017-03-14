@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 
-//const socket = io('http://localhost:5000')
-const socket = io('http://119.81.236.205:5000')
+const socket = io('http://localhost:5000')
+//const socket = io('http://119.81.236.205:5000')
 
 const newMsg = msg => {
     const payload = {
